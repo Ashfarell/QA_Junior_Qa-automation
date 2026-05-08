@@ -1,25 +1,20 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+//CC simples p/ acessar Página
+Cypress.Commands.add('acessarQuerying', () => {
+  cy.contains('Commands').click();
+  cy.contains('Querying').click();
+});
+
+// CC com PARÂMETRO p/ acessar Página
+Cypress.Commands.add('acessarMenu', (menu, opcao) => {
+  cy.contains(menu).click();
+  cy.contains(opcao).click();
+});
+
+//CC p/ preencher campo nome c/ PARÂMETRO
+Cypress.Commands.add('preencherCampo', (seletor, texto) => {
+  cy.get(seletor).type(texto);
+});
+
+Cypress.Commands.add('preencherEValidar', (seletor, texto) => {
+  cy.get(seletor).clear().type(texto).should('have.value', texto);
+});
